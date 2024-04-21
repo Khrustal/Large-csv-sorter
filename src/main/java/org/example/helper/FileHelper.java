@@ -1,6 +1,6 @@
 package org.example.helper;
 
-import org.example.utility.LineReader;
+import org.example.reader.LineReader;
 
 import java.io.*;
 import java.nio.file.Files;

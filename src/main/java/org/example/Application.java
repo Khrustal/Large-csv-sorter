@@ -7,7 +7,7 @@ import java.util.List;
 import static org.example.helper.FileHelper.mergeSortedFiles;
 import static org.example.helper.FileHelper.splitAndSortInputFile;
 import static org.example.helper.SorterHelper.*;
-import static org.example.utility.Constants.*;
+import static org.example.constants.Constants.*;
 
 /**
  * The Application class serves as the main class to sort a CSV file using a multi-way merge approach.
@@ -63,9 +63,14 @@ public class Application {
      * @throws IOException if an I/O error occurs during file handling.
      */
     private static void processFiles(String inputFilePath, String outputFilePath, int maxMemorySize) throws IOException {
-        System.out.println("Input file path: " + inputFilePath);
-        System.out.println("Output file path: " + outputFilePath);
-        System.out.println("Max Memory Size: " + maxMemorySize + " lines");
+        // Output the input file path
+        System.out.println(String.format(INPUT_FILE_PATH_MESSAGE, inputFilePath));
+
+        // Output the output file path
+        System.out.println(String.format(OUTPUT_FILE_PATH_MESSAGE, outputFilePath));
+
+        // Output the max memory size
+        System.out.println(String.format(MAX_MEMORY_SIZE_MESSAGE, maxMemorySize));
 
         String header = getHeader(inputFilePath);
         if (header == null || header.isEmpty()) {
@@ -74,7 +79,6 @@ public class Application {
         }
 
         List<Path> tempFiles = splitAndSortInputFile(inputFilePath, maxMemorySize);
-
         mergeSortedFiles(tempFiles, header, outputFilePath);
         deleteTempFiles(tempFiles);
     }

@@ -1,4 +1,4 @@
-package org.example.utility;
+package org.example.constants;
 
 /**
  * The Constants class holds constant messages that are used throughout the application.
@@ -24,9 +24,25 @@ public final class Constants {
      */
     public static final String FILE_EMPTY_MESSAGE = "File seems to be empty. Aborting process";
 
+    /**
+     * Message template for displaying the input file path.
+     * Uses a placeholder (%s) for the file path value.
+     */
+    public static final String INPUT_FILE_PATH_MESSAGE = "Input file path: %s";
+
+    /**
+     * Message template for displaying the output file path.
+     * Uses a placeholder (%s) for the file path value.
+     */
+    public static final String OUTPUT_FILE_PATH_MESSAGE = "Output file path: %s";
+
+    /**
+     * Message template for displaying the max memory size.
+     * Uses a placeholder (%s) for the memory size value.
+     */
+    public static final String MAX_MEMORY_SIZE_MESSAGE = "Max Memory Size: %d lines";
+
     // Private constructor to prevent instantiation of the Constants class
     private Constants() {
     }
 }
-
-

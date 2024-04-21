@@ -1,4 +1,4 @@
-package org.example.utility;
+package org.example.reader;
 
 import java.io.BufferedReader;
 import java.io.Closeable;
