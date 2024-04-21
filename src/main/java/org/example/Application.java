@@ -7,6 +7,7 @@ import java.util.List;
 import static org.example.helper.FileHelper.mergeSortedFiles;
 import static org.example.helper.FileHelper.splitAndSortInputFile;
 import static org.example.helper.SorterHelper.*;
+import static org.example.utility.Constants.*;
 
 /**
  * The Application class serves as the main class to sort a CSV file using a multi-way merge approach.
@@ -14,7 +15,7 @@ import static org.example.helper.SorterHelper.*;
  */
 public class Application {
 
-    public static final int DEFAULT_MAX_MEMORY_SIZE = 10000;
+    private static final int DEFAULT_MAX_MEMORY_SIZE = 10000;
 
     /**
      * The main method serves as the entry point for the CSV sorting application.
@@ -24,48 +25,57 @@ public class Application {
      * @throws IOException if an I/O error occurs during file handling.
      */
     public static void main(String[] args) throws IOException {
-        String inputFilePath; // Path to the input CSV file
-        String outputFilePath; // Path to the output sorted CSV file
-        int maxMemorySize = DEFAULT_MAX_MEMORY_SIZE; // Maximum number of lines that can be held in memory for sorting
-
-        // Check if the input and output file paths are specified
         if (args.length < 2) {
-            System.out.println("No file paths specified");
+            System.out.println(USAGE_MESSAGE);
             return;
         }
-        inputFilePath = args[0];
-        outputFilePath = args[1];
-        // Optional argument for specifying max memory size
+
+        String inputFilePath = args[0];
+        String outputFilePath = args[1];
+        int maxMemorySize = parseMaxMemorySize(args);
+
+        processFiles(inputFilePath, outputFilePath, maxMemorySize);
+    }
+
+    /**
+     * Parses the maximum memory size from command-line arguments.
+     * @param args the command-line arguments.
+     * @return the maximum memory size for sorting.
+     */
+    private static int parseMaxMemorySize(String[] args) {
+        int maxMemorySize = DEFAULT_MAX_MEMORY_SIZE;
         if (args.length >= 3) {
-            Integer t = null;
             try {
-                t = Integer.parseInt(args[2]);
-            } catch (Exception e) {
-                System.out.println("Couldn't parse memory size argument, setting default");
-            }
-            if (t != null) {
-                maxMemorySize = t;
+                maxMemorySize = Integer.parseInt(args[2]);
+            } catch (NumberFormatException e) {
+                System.out.println(INVALID_MEMORY_SIZE_MESSAGE);
             }
         }
+        return maxMemorySize;
+    }
 
+    /**
+     * Processes the input and output files, performing sorting operations.
+     *
+     * @param inputFilePath the path to the input CSV file.
+     * @param outputFilePath the path to the output sorted CSV file.
+     * @param maxMemorySize the maximum memory size for sorting.
+     * @throws IOException if an I/O error occurs during file handling.
+     */
+    private static void processFiles(String inputFilePath, String outputFilePath, int maxMemorySize) throws IOException {
         System.out.println("Input file path: " + inputFilePath);
         System.out.println("Output file path: " + outputFilePath);
         System.out.println("Max Memory Size: " + maxMemorySize + " lines");
 
-        // Read the header from the input file
         String header = getHeader(inputFilePath);
         if (header == null || header.isEmpty()) {
-            System.out.println("File seems to be empty. Aborting process");
+            System.out.println(FILE_EMPTY_MESSAGE);
             return;
         }
 
-        // Split and sort the input file
         List<Path> tempFiles = splitAndSortInputFile(inputFilePath, maxMemorySize);
 
-        // Merge sorted temporary files into the final output file
         mergeSortedFiles(tempFiles, header, outputFilePath);
-
-        // Delete temporary files
         deleteTempFiles(tempFiles);
     }
 }
