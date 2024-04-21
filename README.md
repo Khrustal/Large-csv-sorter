@@ -38,7 +38,8 @@ java -cp path/to/jar org.example.Application /path/to/input.csv /path/to/output.
 
 The project contains the following classes:
 
-- **`org.example.FileHelper`**: Provides methods for file handling and sorting of records.
+- **`org.example.helper.FileHelper`**: Provides methods for file handling and sorting of records.
 - **`org.example.helper.SorterHelper`**: Contains helper functions for file operations such as reading headers, extracting first fields, and deleting temporary files.
-- **`org.example.LineReader`**: Handles reading lines from temporary files and adding them to a priority queue.
+- **`org.example.utility.LineReader`**: Handles reading lines from temporary files and adding them to a priority queue.
+- **`org.example.utility.Constants`**: Contains different messages for input params error cases.
 - **`org.example.Application`**: The main class for sorting CSV files using a multi-way merge approach.
