@@ -2,15 +2,7 @@
 
 The CSV File Sorter is a command-line application that allows you to sort CSV files efficiently using a multi-way merge approach. The program takes an input CSV file, sorts it by first column integer value, and produces a sorted output CSV file. It also provides an option to specify the maximum memory size for sorting to optimize performance.
 
-<h3>**Program only works with CSV files that have integer values in first column!**</h3>
-
-CSV File Example
-Here is an example portion of the CSV file formatted as a table:
-
-Year	Make	Model	Trim	Body	Transmission	VIN	State	Condition	Odometer	Color	Interior	Seller	MMR	Selling Price	Sale Date
-2015	Kia	Sorento	LX	SUV	Automatic	5xyktca69fg566472	CA	5	16639	White	Black	Kia Motors America Inc	20500	21500	Tue Dec 16 2014 12:30:00 GMT-0800 (PST)
-2015	Kia	Sorento	LX	SUV	Automatic	5xyktca69fg561319	CA	5	9393	White	Beige	Kia Motors America Inc	20800	21500	Tue Dec 16 2014 12:30:00 GMT-0800 (PST)
-2014	BMW	3 Series	328i SULEV	Sedan	Automatic	wba3c1c51ek116351	CA	45	1331	Gray	Black	Financial Services Remarketing (Lease)	31900	30000	Thu Jan 15 2015 04:30:00 GMT-0800 (PST)
+<h3>Program only works with CSV files that have integer values in first column!</h3>
 
 ## Features
 
