@@ -1,4 +1,4 @@
-# CSV File Sorter
+# Large CSV Sorter
 
 The CSV File Sorter is a command-line application that allows you to sort CSV files efficiently using a multi-way merge approach. The program takes an input CSV file, sorts it, and produces a sorted output CSV file. It also provides an option to specify the maximum memory size for sorting to optimize performance.
 
