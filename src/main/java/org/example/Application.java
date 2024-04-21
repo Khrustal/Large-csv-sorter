@@ -9,10 +9,10 @@ import static org.example.helper.FileHelper.splitAndSortInputFile;
 import static org.example.helper.SorterHelper.*;
 
 /**
- * The CsvSorter class serves as the main class to sort a CSV file using a multi-way merge approach.
+ * The Application class serves as the main class to sort a CSV file using a multi-way merge approach.
  * It provides a command-line interface for specifying input and output file paths, as well as an optional memory size.
  */
-public class CsvSorter {
+public class Application {
 
     public static final int DEFAULT_MAX_MEMORY_SIZE = 10000;
 

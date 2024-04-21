@@ -17,7 +17,7 @@ The CSV File Sorter is a command-line application that allows you to sort CSV fi
 To use the CSV File Sorter, run the following command:
 
 ```sh
-java -cp path/to/jar org.example.CsvSorter <input_file_path> <output_file_path> [max_memory_size]
+java -cp path/to/jar org.example.Application <input_file_path> <output_file_path> [max_memory_size]
 ```
 
 - `<input_file_path>`: The path of the input CSV file that you want to sort.
@@ -29,7 +29,7 @@ java -cp path/to/jar org.example.CsvSorter <input_file_path> <output_file_path> 
 For example, to sort a CSV file located at `/path/to/input.csv` and save the sorted file to `/path/to/output.csv` with a memory size of 5,000 lines, run:
 
 ```sh
-java -cp path/to/jar org.example.CsvSorter /path/to/input.csv /path/to/output.csv 5000
+java -cp path/to/jar org.example.Application /path/to/input.csv /path/to/output.csv 5000
 ```
 
 ## Project Structure
@@ -39,4 +39,4 @@ The project contains the following classes:
 - **`org.example.FileHelper`**: Provides methods for file handling and sorting of records.
 - **`org.example.helper.SorterHelper`**: Contains helper functions for file operations such as reading headers, extracting first fields, and deleting temporary files.
 - **`org.example.LineReader`**: Handles reading lines from temporary files and adding them to a priority queue.
-- **`org.example.CsvSorter`**: The main class for sorting CSV files using a multi-way merge approach.
+- **`org.example.Application`**: The main class for sorting CSV files using a multi-way merge approach.
