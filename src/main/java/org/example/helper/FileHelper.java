@@ -32,6 +32,7 @@ public class FileHelper {
             List<String> chunk = new ArrayList<>();
             String line;
             reader.readLine(); // Skip the header
+
             while ((line = reader.readLine()) != null) {
                 chunk.add(line);
                 if (chunk.size() >= maxMemorySize) {
@@ -40,10 +41,12 @@ public class FileHelper {
                     chunk.clear();
                 }
             }
+
             // Sort and save any remaining chunk if it exists
             if (!chunk.isEmpty()) {
                 sortChunk(tempFiles, chunk);
             }
+
         }
         return tempFiles;
     }
@@ -59,12 +62,14 @@ public class FileHelper {
     public static void sortChunk(List<Path> tempFiles, List<String> chunk) throws IOException {
         chunk.sort(Comparator.comparingInt(SorterHelper::getFirstFieldAsInt));
         Path tempFilePath = Files.createTempFile("sorted_chunk_", ".csv");
+
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(tempFilePath.toFile()))) {
             for (String sortedLine : chunk) {
                 writer.write(sortedLine);
                 writer.newLine();
             }
         }
+
         tempFiles.add(tempFilePath);
     }
 
@@ -79,11 +84,11 @@ public class FileHelper {
      */
     public static void mergeSortedFiles(List<Path> tempFiles, String header, String outputFilePath) throws IOException {
         PriorityQueue<LineReader> pq = new PriorityQueue<>(Comparator.comparingInt(LineReader::getFirstField));
+
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath))) {
             // Write the header to the output file
             writer.write(header);
             writer.newLine();
-
             // Open all temporary files and add them to the priority queue
             for (Path tempFilePath : tempFiles) {
                 LineReader lineReader = new LineReader(tempFilePath);

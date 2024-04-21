@@ -61,8 +61,10 @@ public class CsvSorter {
 
         // Split and sort the input file
         List<Path> tempFiles = splitAndSortInputFile(inputFilePath, maxMemorySize);
+
         // Merge sorted temporary files into the final output file
         mergeSortedFiles(tempFiles, header, outputFilePath);
+
         // Delete temporary files
         deleteTempFiles(tempFiles);
     }
